@@ -1,0 +1,43 @@
+<div class="container mt-3 p-5">
+        <div class="card text-center">
+            <div class="card-header" id="headerTipo">
+
+            </div>
+            <div class="card-body bg-dark bg-gradient">
+                <form action="index.php" method="post">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <label for="value" class="form-label text-light">Valor</label>
+                                <input type="number" class="form-control" id="value" name="value" placeholder="Ingrese el valor a convertir">
+                            </div>
+                            <div class="col">
+                                <label for="fromUnit" class="form-label text-light">De</label>
+                                <select class="form-select" id="fromUnit" name="fromUnit">
+                                    <option value="length">Longitud</option>
+                                    <option value="mass">Masa</option>
+                                </select>
+                            </div>
+                            <div class="col">
+                                <label for="toUnit" class="form-label text-light">A</label>
+                                <select class="form-select" id="toUnit" name="toUnit">
+                                    <option value="feet">Pies</option>
+                                    <option value="miles">Millas</option>
+                                    <option value="kilometers">Kilometros</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 text-center p-3 mx-auto">
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-light mt-3">Convertir</button>
+                </form>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Ultimas conversiones
+            </div>
+        </div>
+    </div>
