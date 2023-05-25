@@ -1,18 +1,16 @@
-<?
+<?php 
+class PesoConverter extends UnitConverter {
 
-class Peso {
-    public $value;
-    public $fromUnit;
-    public $toUnit;
-    public $result;
 
-    public function __construct($value, $fromUnit, $toUnit) {
-        $this->value = $value;
-        $this->fromUnit = $fromUnit;
-        $this->toUnit = $toUnit;
+  public function __construc($value, $fromUnit, $toUnit, $tipoUnidades) {
+    parent::__construct($value, $fromUnit, $toUnit, $tipoUnidades);
+  }
+
+  public function convert() {
+    if ($this->fromUnit == 'Libras' && $this->toUnit == 'Kilogramos') {
+      $this->result = $this->value * 0.453592;
     }
-
-    public function convertir() {
-        $this->result = $this->value * 2;
-    }
+    return $this->result;
+  }
+ 
 }

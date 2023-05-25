@@ -1,57 +1,28 @@
 <?php
-require_once 'src/Classes/Moneda.php';
-require_once 'src/Classes/Peso.php';
-require_once 'src/Classes/Longitud.php';
-require_once 'src/Classes/Volumen.php';
-require_once './src/Classes/Datos.php';
+require_once './src/Classes/Converter.php';
+require_once './src/Classes/Longitud.php';
+require_once './src/Classes/Peso.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $value = $_POST['value'];
     $fromUnit = $_POST['fromUnit'];
     $toUnit = $_POST['toUnit'];
+    $tipoUnidades = $_POST['tipoUnidades'];
+    echo "Valor: " . $value . "<br>";
+    echo "De: " . $fromUnit . "<br>";
+    echo "A: " . $toUnit . "<br>";
+    echo "Tipo de Unidades: " . $tipoUnidades . "<br>";
     // Crear la instancia del conversor de la unidad adecuada
+    $convertedValue = null;
 
-    $converter = null;
-
-    if ($fromUnit === 'length') {
-        $converter = new LengthConverter($value);
-    } elseif ($fromUnit === 'mass') {
-        $converter = new MassConverter($value);
+    if ($tipoUnidades === 'Peso') {
+        $converter = new PesoConverter($value, $fromUnit, $toUnit, $tipoUnidades);
+        $convertedValue = $converter->convert();
     }
 
-    // Realizar la conversión
-    if ($converter) {
-        $convertedValue = null;
-
-        switch ($toUnit) {
-            case 'feet':
-                $converter->convertToFeet();
-                $convertedValue = $converter->getConvertedValue();
-                break;
-            case 'miles':
-                $converter->convertToMiles();
-                $convertedValue = $converter->getConvertedValue();
-                break;
-            case 'kilometers':
-                $converter->convertToKilometers();
-                $convertedValue = $converter->getConvertedValue();
-                break;
-            // Agregar más casos según las unidades que desees convertir
-        }
-
-        echo "Valor convertido: " . $convertedValue;
-    }
-function convertUnit(UnitConverterInterface $converter) {
-    $converter->convert();
-    $convertedValue = $converter->getConvertedValue();
+    
     echo "Valor convertido: " . $convertedValue;
-}
-
-$lengthConverter = new LengthConverter(10);
-$massConverter = new MassConverter(5);
-
-convertUnit($lengthConverter); // Llama a los métodos convert() y getConvertedValue() de LengthConverter
-convertUnit($massConverter);
 }
 ?>
 
@@ -84,7 +55,7 @@ convertUnit($massConverter);
     ?>
 
     <div id="root"></div>
-
+    
     <?php
     require_once './src/Views/Form.php';
     ?>

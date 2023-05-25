@@ -16,3 +16,5 @@ class Datos {
         $this->result = $this->value * 2;
     }
 }
+
+?>

@@ -27,7 +27,9 @@
                         </div>
                         <div class="row">
                             <div class="col-4 text-center p-3 mx-auto">
-                                <input type="text" class="form-control" placeholder="">
+                                <?php
+                                echo '<input value="'.$convertedValue.'" type="text" class="form-control" placeholder="Resultado">';
+                                ?>
                             </div>
                         </div>
                     </div>
