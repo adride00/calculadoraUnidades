@@ -1,10 +1,58 @@
 <?php
+require_once 'src/Classes/Moneda.php';
+require_once 'src/Classes/Peso.php';
+require_once 'src/Classes/Longitud.php';
+require_once 'src/Classes/Volumen.php';
+require_once './src/Classes/Datos.php';
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $value = $_POST['value'];
-        echo "Valor: " . $value . "<br>";
-        // Crear la instancia del conversor de la unidad adecuada
-    
+    $value = $_POST['value'];
+    $fromUnit = $_POST['fromUnit'];
+    $toUnit = $_POST['toUnit'];
+    // Crear la instancia del conversor de la unidad adecuada
+
+    $converter = null;
+
+    if ($fromUnit === 'length') {
+        $converter = new LengthConverter($value);
+    } elseif ($fromUnit === 'mass') {
+        $converter = new MassConverter($value);
     }
+
+    // Realizar la conversión
+    if ($converter) {
+        $convertedValue = null;
+
+        switch ($toUnit) {
+            case 'feet':
+                $converter->convertToFeet();
+                $convertedValue = $converter->getConvertedValue();
+                break;
+            case 'miles':
+                $converter->convertToMiles();
+                $convertedValue = $converter->getConvertedValue();
+                break;
+            case 'kilometers':
+                $converter->convertToKilometers();
+                $convertedValue = $converter->getConvertedValue();
+                break;
+            // Agregar más casos según las unidades que desees convertir
+        }
+
+        echo "Valor convertido: " . $convertedValue;
+    }
+function convertUnit(UnitConverterInterface $converter) {
+    $converter->convert();
+    $convertedValue = $converter->getConvertedValue();
+    echo "Valor convertido: " . $convertedValue;
+}
+
+$lengthConverter = new LengthConverter(10);
+$massConverter = new MassConverter(5);
+
+convertUnit($lengthConverter); // Llama a los métodos convert() y getConvertedValue() de LengthConverter
+convertUnit($massConverter);
+}
 ?>
 
 <!DOCTYPE html>
@@ -44,12 +92,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <script type="module">
         import { Menu } from './src/components/Menu.js';
         import { MENUITEMS } from './assets/constants/menu.js';
+        import { UNIDADES } from './assets/constants/unidades.js';
 
         function setEvents() {
             MENUITEMS.map(item => {
                 let button = document.getElementById(item.nombre);
                 button.addEventListener('click', function(e) {
                     document.getElementById('headerTipo').innerHTML = `Unidades tipo ${e.target.id}` ;
+                    let unidades = UNIDADES.filter(unidad => unidad[e.target.id]);
+                    let fromUnit = document.getElementById('fromUnit');
+                    let toUnit = document.getElementById('toUnit');
+                    fromUnit.innerHTML = '';
+                    toUnit.innerHTML = '';
+                    unidades[0][e.target.id].map(unidad => {
+                        fromUnit.innerHTML += `<option value="${unidad}">${unidad}</option>`;
+                        toUnit.innerHTML += `<option value="${unidad}">${unidad}</option>`;
+                    });
+                    document.getElementById('tipoUnidades').value = e.target.id;
+
+                
+
                 });
                 
             })

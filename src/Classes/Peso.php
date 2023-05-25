@@ -1,6 +1,6 @@
 <?
 
-class Datos {
+class Peso {
     public $value;
     public $fromUnit;
     public $toUnit;

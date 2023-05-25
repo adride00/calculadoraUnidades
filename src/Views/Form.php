@@ -10,20 +10,18 @@
                             <div class="col">
                                 <label for="value" class="form-label text-light">Valor</label>
                                 <input type="number" class="form-control" id="value" name="value" placeholder="Ingrese el valor a convertir">
+                                <input type="hidden" name="tipoUnidades" id="tipoUnidades">
                             </div>
                             <div class="col">
                                 <label for="fromUnit" class="form-label text-light">De</label>
                                 <select class="form-select" id="fromUnit" name="fromUnit">
-                                    <option value="length">Longitud</option>
-                                    <option value="mass">Masa</option>
+                                    
                                 </select>
                             </div>
                             <div class="col">
                                 <label for="toUnit" class="form-label text-light">A</label>
                                 <select class="form-select" id="toUnit" name="toUnit">
-                                    <option value="feet">Pies</option>
-                                    <option value="miles">Millas</option>
-                                    <option value="kilometers">Kilometros</option>
+                                    
                                 </select>
                             </div>
                         </div>
