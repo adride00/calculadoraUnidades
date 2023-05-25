@@ -9,10 +9,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $fromUnit = $_POST['fromUnit'];
     $toUnit = $_POST['toUnit'];
     $tipoUnidades = $_POST['tipoUnidades'];
-    echo "Valor: " . $value . "<br>";
-    echo "De: " . $fromUnit . "<br>";
-    echo "A: " . $toUnit . "<br>";
-    echo "Tipo de Unidades: " . $tipoUnidades . "<br>";
+    // echo "Valor: " . $value . "<br>";
+    // echo "De: " . $fromUnit . "<br>";
+    // echo "A: " . $toUnit . "<br>";
+    // echo "Tipo de Unidades: " . $tipoUnidades . "<br>";
     // Crear la instancia del conversor de la unidad adecuada
     $convertedValue = null;
 
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     
-    echo "Valor convertido: " . $convertedValue;
+    // echo "Valor convertido: " . $convertedValue;
 }
 ?>
 
