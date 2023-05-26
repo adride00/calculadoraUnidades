@@ -1,0 +1,13 @@
+body {
+  background: #c1c5d3;
+
+}
+
+.buttonType {
+  position: relative;
+  display: inline-block;
+}
+
+.buttonType img {
+  pointer-events: none;
+}

@@ -16,7 +16,7 @@ class UnitConverter {
       $this->fromUnit = $fromUnit;
       $this->toUnit = $toUnit;
       $this->tipoUnidades = $tipoUnidades;
-      $this->result = null;
+      $this->result = 0;
   }
 
   public function convert() {

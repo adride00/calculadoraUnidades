@@ -28,7 +28,10 @@
                         <div class="row">
                             <div class="col-4 text-center p-3 mx-auto">
                                 <?php
-                                echo '<input value="'.$convertedValue.'" type="text" class="form-control" placeholder="Resultado">';
+                                if(isset($convertedValue)){
+
+                                    echo '<input value="'.$convertedValue.'" type="text" class="form-control" placeholder="Resultado">';
+                                }
                                 ?>
                             </div>
                         </div>
