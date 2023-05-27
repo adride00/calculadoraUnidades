@@ -1,6 +1,6 @@
 <?php 
 
-class UnitConverter {
+abstract class UnitConverter {
   protected $value;
   protected $fromUnit;
 
@@ -8,8 +8,6 @@ class UnitConverter {
   protected $tipoUnidades;
 
   protected $result;
-
-
 
   public function __construct($value, $fromUnit, $toUnit, $tipoUnidades) {
       $this->value = $value;
@@ -19,13 +17,9 @@ class UnitConverter {
       $this->result = 0;
   }
 
-  public function convert() {
-      
-  }
+  abstract public function convert();
 
-  public function getConvertedValue() {
-      return $this->result;
-  }
+  abstract public function getConvertedValue();
 
   
 }

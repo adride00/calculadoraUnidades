@@ -17,5 +17,9 @@ class Peso extends UnitConverter {
       $this->result = $this->value * 453.592;
     }
   }
+
+  public function getConvertedValue() {
+    return $this->result;
+  }
  
 }
