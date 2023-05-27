@@ -45,6 +45,11 @@ class Volumen extends UnitConverter {
         $this->result = $this->value * $conversion;
       }
     }
+
+    public function getConvertedValue() {
+      return $this->result;
+    }
+    
   }
 
 ?>
