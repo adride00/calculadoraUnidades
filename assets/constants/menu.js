@@ -19,5 +19,10 @@ export const MENUITEMS = [
       nombre: 'Volumen',
       icono: 'measuring-cup-svgrepo-com.svg',
     }
+    
+    {
+      nombre: 'Tiempo',
+      icono: 'time-svgrepo-com.svg',
+    }
 
   ]
