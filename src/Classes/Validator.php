@@ -1,33 +1,37 @@
 <?php 
 
 class Validador {
-  public function validarDatosFormulario($datosFormulario) {
+
+  
+  static public function validarDatosFormulario($datosFormulario) {
 
       // El campo "valor" es obligatorio
       if (empty($datosFormulario['value'])) {
-          return 'El campo "valor" es obligatorio.';
+        return ['msj' => 'El campo "valor" es obligatorio.', 'campo' => 'value', 'status' => 'error'];
       }
 
       // numero no deben ser negativos
       if ($datosFormulario['value'] < 0) {
-          return 'El campo "valor" no puede ser negativo.';
+        return ['msj' => 'El campo "valor" no debe ser negativo.', 'campo' => 'value', 'status' => 'error'];
       }
 
       // El campo "de" es obligatorio
       if (empty($datosFormulario['fromUnit'])) {
-          return 'El campo "de" es obligatorio.';
+        return ['msj' => 'El campo "de" es obligatorio.', 'campo' => 'fromUnit', 'status' => 'error'];
       }
 
       // El campo "a" es obligatorio
 
       if (empty($datosFormulario['toUnit'])) {
-          return 'El campo "a" es obligatorio.';
+        return ['msj' => 'El campo "a" es obligatorio.', 'campo' => 'toUnit', 'status' => 'error'];
       }
 
-      // El campo "tipoUnidades" es obligatorio
+      // validar que value sea un numero
+      if (!is_numeric($datosFormulario['value'])) {
+        return ['msj' => 'El campo "valor" debe ser un número.', 'campo' => 'value', 'status' => 'error'];
+      }
 
-      // 
-      return true;
+      return ['msj' => '', 'campo' => '', 'status' => 'success'];
   }
 }
 

@@ -2,10 +2,10 @@
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   try{
-    $value = $_POST['value'];
-    $fromUnit = $_POST['fromUnit'];
-    $toUnit = $_POST['toUnit'];
-    $tipoUnidades = $_POST['tipoUnidades'];
+    $value = $_POST['value'] ?? null;
+    $fromUnit = $_POST['fromUnit'] ?? null;
+    $toUnit = $_POST['toUnit'] ?? null;
+    $tipoUnidades = $_POST['tipoUnidades'] ? $_POST['tipoUnidades'] : "Peso";
   }catch(Exception $e){
     echo $e->getMessage();
   }
@@ -21,15 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     return $converter->getConvertedValue();
   }
 
-  // instanciar clase validator y llamar al metodo validarDatosFormulario
-  $validator = new Validador();
-  $validacion = $validator->validarDatosFormulario($_POST);
-  if($validacion === true){
+
+  $resultadoValidacion = Validador::validarDatosFormulario($_POST);
+  // print_r($resultadoValidacion['status'] === 'success');
+  if($resultadoValidacion){
     $converter = new $tipoUnidades($value, $fromUnit, $toUnit, $tipoUnidades);
     $convertedValue = unidades($converter);
-  }else{
-    echo 'Se encontraron los siguientes errores:<br>';
-    echo $validacion;
   }
 
   // $converter = new $tipoUnidades($value, $fromUnit, $toUnit, $tipoUnidades);
