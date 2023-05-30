@@ -1,9 +1,12 @@
 <?php
+require_once './src/Classes/Validator.php';
 require_once './src/Classes/Converter.php';
 require_once './src/Classes/Longitud.php';
 require_once './src/Classes/Peso.php';
 require_once './src/Classes/Volumen.php';
 require_once './src/Classes/Tiempo.php';
+require_once './src/Classes/Moneda.php';
+
 require_once './src/Classes/Main.php';
 ?>
 
