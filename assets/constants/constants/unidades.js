@@ -12,8 +12,8 @@ export const UNIDADES = [
     Moneda: ["Dolares", "Euros", "Pesos", "Yen", "Won"],
   },
   {
-    Datos: ["Bits", "Bytes", "Kilobytes", "Megabytes", "Gigabytes"]
-  }
+    Datos: ["Bits", "Bytes", "Kilobytes", "Megabytes", "Gigabytes"],
+  },
   {
     Tiempo: ["Segundos", "Minutos", "Horas", "Dias", "Semanas"]
   }
