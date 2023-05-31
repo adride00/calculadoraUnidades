@@ -13,7 +13,7 @@ export const UNIDADES = [
   },
   {
     Datos: ["Bits", "Bytes", "Kilobytes", "Megabytes", "Gigabytes"]
-  }
+  },
   {
     Tiempo: ["Segundos", "Minutos", "Horas", "Dias", "Semanas"]
   }
