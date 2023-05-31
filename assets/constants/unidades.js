@@ -12,7 +12,7 @@ export const UNIDADES = [
     Moneda: ["Dolares", "Euros", "Pesos Mexicanos", "Yen", "Won"],
   },
   {
-    Datos: ["Bits", "Bytes", "Kilobytes", "Megabytes", "Gigabytes"]
+    Datos: ["Terabyte", "Bytes", "Kilobytes", "Megabytes", "Gigabytes"]
   },
   {
     Tiempo: ["Segundos", "Minutos", "Horas", "Dias", "Semanas"]
