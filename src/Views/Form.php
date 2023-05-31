@@ -4,7 +4,7 @@
             Unidades tipo Peso
         </div>
         <div class="card-body bg-dark bg-gradient">
-            <form action="index.php" method="post">
+            <form action="index.php" method="post" id="formUnidades">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4">
@@ -67,4 +67,8 @@
     })
     // dar click por default en el primer boton
     document.getElementById("Longitud").click();
+
+    document.getElementById("formUnidades").addEventListener("submit", (e) => {
+        e.preventDefault();
+    })
 </script>

@@ -9,7 +9,7 @@ export const UNIDADES = [
     Volumen: ["Litros", "Mililitros", "Galones", "Onzas", "Botellas"],
   },
   {
-    Moneda: ["Dolares", "Euros", "Pesos", "Yen", "Won"],
+    Moneda: ["Dolares", "Euros", "Pesos Mexicanos", "Yen", "Won"],
   },
   {
     Datos: ["Bits", "Bytes", "Kilobytes", "Megabytes", "Gigabytes"]
