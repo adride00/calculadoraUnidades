@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label for="value" class="form-label text-light">Valor</label>
-                            <input type="number" class="form-control" id="value" name="value" placeholder="Ingrese el valor a convertir">
+                            <input  type="number" class="form-control" id="value" name="value" placeholder="Ingrese el valor a convertir">
                             <?php
                             if (isset($resultadoValidacion) && $resultadoValidacion['status'] == 'error') {
 
@@ -60,15 +60,19 @@
 </div>
 
 <script>
+    const msjError = document.getElementById("msjValueError")
     document.getElementById("value").addEventListener("keypress", function(e) {
         if (e.target.value != '') {
-            document.getElementById("msjValueError").style.display = "none";
+            if(msjError){
+
+                document.getElementById("msjValueError").style.display = "none";
+            }
         }
     })
     // dar click por default en el primer boton
-    document.getElementById("Longitud").click();
+    // document.getElementById("Longitud").click();
 
-    document.getElementById("formUnidades").addEventListener("submit", (e) => {
-        e.preventDefault();
-    })
+    // document.getElementById("formUnidades").addEventListener("submit", (e) => {
+    //     e.preventDefault();
+    // })
 </script>
