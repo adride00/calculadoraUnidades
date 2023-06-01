@@ -4,7 +4,7 @@
             Unidades tipo Peso
         </div>
         <div class="card-body bg-dark bg-gradient">
-            <form action="index.php" method="post" id="formUnidades">
+            <form id="formUnidades">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4">
@@ -41,25 +41,29 @@
                     </div>
                     <div class="row">
                         <div class="col-4 text-center p-3 mx-auto">
-                            <?php
-                            if (isset($convertedValue)) {
+                          
+                            
 
-                                echo '<input value="' . $convertedValue . '" type="text" class="form-control" placeholder="Resultado" readonly>';
-                            }
-                            ?>
+                            '<input id="response" type="text" class="form-control" placeholder="Resultado" readonly disabled>';
+                            
+                            
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-outline-light mt-3">Convertir</button>
+                <button type="submit" class="btn btn-outline-light mt-3" id="buttonConvertir">Convertir</button>
             </form>
         </div>
         <div class="card-footer text-body-secondary">
             Ultimas conversiones
+            <div id="history">
+                
+            </div>
         </div>
     </div>
 </div>
 
-<script>
+<script type="module">
+    import { ListItem } from '../calculadora/src/components/ListItem.js';
     const msjError = document.getElementById("msjValueError")
     document.getElementById("value").addEventListener("keypress", function(e) {
         if (e.target.value != '') {
@@ -69,10 +73,32 @@
             }
         }
     })
-    // dar click por default en el primer boton
-    // document.getElementById("Longitud").click();
+    
+    let table = document.getElementById("history")
 
-    // document.getElementById("formUnidades").addEventListener("submit", (e) => {
-    //     e.preventDefault();
-    // })
+    table.innerHTML = ListItem()
+    const response = document.getElementById("response")
+    const formUnidades = document.getElementById("formUnidades")
+    // enviar por ajax el formulario
+    formUnidades.addEventListener("submit", function(e) {
+        e.preventDefault();
+        const formData = new FormData(formUnidades)
+        fetch("./src/Classes/Main.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            response.value = data
+            // guardar en local storage
+            const datos = {
+                value: document.getElementById("value").value,
+                fromUnit: document.getElementById("fromUnit").value,
+                toUnit: document.getElementById("toUnit").value,
+                response: data
+            }
+            localStorage.setItem("datos", JSON.stringify(datos))
+        })
+    })
 </script>
