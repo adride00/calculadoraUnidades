@@ -9,7 +9,7 @@
                     <div class="row">
                         <div class="col-md-4">
                             <label for="value" class="form-label text-light">Valor</label>
-                            <input  type="number" class="form-control" id="value" name="value" placeholder="Ingrese el valor a convertir">
+                            <input  type="text" class="form-control" id="value" name="value" placeholder="Ingrese el valor a convertir">
                             <?php
                             if (isset($resultadoValidacion) && $resultadoValidacion['status'] == 'error') {
 
@@ -119,4 +119,17 @@
             agregarDataALocalStorage(datos)
         })
     })
+
+    var numeroInput = document.getElementById("value");
+
+
+numeroInput.addEventListener("keydown", function(event) {
+  var key = event.key;
+
+  var regex = /[0-9]|\./;
+  var isBackspaceOrDelete = key === "Backspace" || key === "Delete";
+  if (!regex.test(key) && !isBackspaceOrDelete) {
+    event.preventDefault();
+  }
+});
 </script>
