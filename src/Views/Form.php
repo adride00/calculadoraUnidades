@@ -16,7 +16,7 @@
                                 echo '<span id="msjValueError"><p style="color: red">' . $resultadoValidacion['msj'] . '</p></span>';
                             }
                             ?>
-                            <input type="hidden" name="tipoUnidades" id="tipoUnidades">
+                            <input value="Peso" type="hidden" name="tipoUnidades" id="tipoUnidades">
                         </div>
                         <div class="col-md-4">
                             <label for="fromUnit" class="form-label text-light">De</label>
@@ -76,9 +76,26 @@
     
     let table = document.getElementById("history")
 
-    table.innerHTML = ListItem()
+    if(localStorage.hasOwnProperty("history")){
+        const data = JSON.parse(localStorage.getItem("history"))
+        table.innerHTML = ListItem(data)
+    }
     const response = document.getElementById("response")
     const formUnidades = document.getElementById("formUnidades")
+
+    // obtener datos de local storage
+    
+    const agregarDataALocalStorage = (datos) => {
+        const data = JSON.parse(localStorage.getItem("history"))
+        if (data) {
+            data.push(datos)
+            localStorage.setItem("history", JSON.stringify(data))
+        } else {
+            localStorage.setItem("history", JSON.stringify([datos]))
+        }
+
+        table.innerHTML = ListItem(data)
+    }
     // enviar por ajax el formulario
     formUnidades.addEventListener("submit", function(e) {
         e.preventDefault();
@@ -90,15 +107,16 @@
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            response.value = data
+            response.value = Number.parseFloat(data).toFixed(2)
             // guardar en local storage
             const datos = {
                 value: document.getElementById("value").value,
                 fromUnit: document.getElementById("fromUnit").value,
                 toUnit: document.getElementById("toUnit").value,
-                response: data
+                response: Number.parseFloat(data).toFixed(2),
+                tipoUnidades: document.getElementById("tipoUnidades").value
             }
-            localStorage.setItem("datos", JSON.stringify(datos))
+            agregarDataALocalStorage(datos)
         })
     })
 </script>
