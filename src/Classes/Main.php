@@ -1,4 +1,14 @@
-<?php
+<?php 
+// agregar clase validator 
+// Path: src\Classes\Validator.php
+require_once 'D:\laragon\www\calculadora\src\Classes\Validator.php';
+require_once 'D:\laragon\www\calculadora\src\Classes\Converter.php';
+require_once 'D:\laragon\www\calculadora\src\Classes\Datos.php';
+require_once 'D:\laragon\www\calculadora\src\Classes\Longitud.php';
+require_once 'D:\laragon\www\calculadora\src\Classes\Peso.php';
+require_once 'D:\laragon\www\calculadora\src\Classes\Volumen.php';
+require_once 'D:\laragon\www\calculadora\src\Classes\Tiempo.php';
+require_once 'D:\laragon\www\calculadora\src\Classes\Moneda.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   try{
@@ -27,10 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if($resultadoValidacion){
     $converter = new $tipoUnidades($value, $fromUnit, $toUnit, $tipoUnidades);
     $convertedValue = unidades($converter);
+    echo json_encode($convertedValue);
   }
 
   // $converter = new $tipoUnidades($value, $fromUnit, $toUnit, $tipoUnidades);
   // $convertedValue = unidades($converter);
 
-  // echo "Valor convertido: " . $convertedValue;
 }
