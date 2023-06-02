@@ -3,7 +3,7 @@
 class Datos extends UnitConverter {
 
   private $tabla = [
-    'kilobytes' => [
+    'Kilobytes' => [
       'Megabytes' => 0.001,
       'Gigabytes' => 0.00000001,
       'Terabyte' => 0.0000000001,
@@ -42,7 +42,7 @@ class Datos extends UnitConverter {
     public function convert() {
       if (isset($this->tabla[$this->fromUnit][$this->toUnit])) {
         $conversion = $this->tabla[$this->fromUnit][$this->toUnit];
-        $this->result = $this->value * $conversion;
+        $this->result = $this->value * floatval($conversion);
       }
     }
 

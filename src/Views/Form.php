@@ -107,7 +107,9 @@
         .then(response => response.json())
         .then(data => {
             console.log(data)
-            response.value = Number.parseFloat(data).toFixed(2)
+            const patron = /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/;
+
+            response.value = patron.test(data) ? data :Number.parseFloat(data).toFixed(2)
             // guardar en local storage
             const datos = {
                 value: document.getElementById("value").value,
