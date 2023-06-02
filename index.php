@@ -25,6 +25,9 @@
     <?php
     require_once './src/Views/Form.php';
     ?>
+    <?php
+    require_once './src/Views/Footer.php';
+    ?>
 
     <script type="module" src="./js/script.js">
         
