@@ -10,12 +10,10 @@
                         <div class="col-md-4">
                             <label for="value" class="form-label text-light">Valor</label>
                             <input  type="text" class="form-control" id="value" name="value" placeholder="Ingrese el valor a convertir">
-                            <?php
-                            if (isset($resultadoValidacion) && $resultadoValidacion['status'] == 'error') {
+                          
 
-                                echo '<span id="msjValueError"><p style="color: red">' . $resultadoValidacion['msj'] . '</p></span>';
-                            }
-                            ?>
+                            <span id="msjValueError"><p style="color: red"></p></span>'
+                            
                             <input value="Peso" type="hidden" name="tipoUnidades" id="tipoUnidades">
                         </div>
                         <div class="col-md-4">
@@ -25,7 +23,7 @@
                                 <option value="Kilogramos">Kilogramos</option>
                                 <option value="Libras">Libras</option>
                                 <option value="Onzas">Onzas</option>
-                                <option value="Arrobas">Arrobas</option>
+                                <option value="Miligramos">Miligramos</option>
                             </select>
                         </div>
                         <div class="col-md-4">
@@ -35,7 +33,7 @@
                                 <option value="Kilogramos">Kilogramos</option>
                                 <option value="Libras">Libras</option>
                                 <option value="Onzas">Onzas</option>
-                                <option value="Arrobas">Arrobas</option>
+                                <option value="Miligramos">Miligramos</option>
                             </select>
                         </div>
                     </div>
@@ -106,19 +104,27 @@
         })
         .then(response => response.json())
         .then(data => {
+            if(data.status == "error"){
+                const msj = document.getElementById("msjValueError")
+                msj.style.display = "block";
+                msj.style.color = "red";
+                document.getElementById("msjValueError").innerHTML = data.msj
+                return
+            }
             console.log(data)
             const patron = /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/;
-
-            response.value = patron.test(data) ? data :Number.parseFloat(data).toFixed(2)
+            const valor = patron.test(data) ? data :Number.parseFloat(data).toFixed(2)
+            response.value = valor
             // guardar en local storage
             const datos = {
                 value: document.getElementById("value").value,
                 fromUnit: document.getElementById("fromUnit").value,
                 toUnit: document.getElementById("toUnit").value,
-                response: Number.parseFloat(data).toFixed(2),
+                response: valor,
                 tipoUnidades: document.getElementById("tipoUnidades").value
             }
             agregarDataALocalStorage(datos)
+            
         })
     })
 

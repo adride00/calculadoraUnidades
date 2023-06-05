@@ -1,6 +1,6 @@
 export const UNIDADES = [
   {
-    Peso: ["Gramos", "Kilogramos", "Libras", "Onzas", "Arrobas"],
+    Peso: ["Gramos", "Kilogramos", "Libras", "Onzas", "Miligramos"],
   },
   {
     Longitud: ["Metros", "Kilometros", "Millas", "Pies", "Centimetros"],
